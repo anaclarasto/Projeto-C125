@@ -18,13 +18,13 @@ public class Veterinario extends Pessoa{
     
     public boolean atende(Animal animal) {
         
-        System.out.println(animal.getNome() + " está se consultando com " + this.getNome());
+        System.out.println("\n"+animal.getNome() + " está se consultando com " + this.getNome());
         return true;
     }
 
     public boolean fazCirurgia(Animal animal) {
         
-        System.out.println(this.getNome() + " está fazendo uma cirurgia em " + animal.getNome());
+        System.out.println("\n"+this.getNome() + " está fazendo uma cirurgia em " + animal.getNome());
         return true;
     }
 }
