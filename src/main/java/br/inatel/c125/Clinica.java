@@ -1,6 +1,10 @@
 package br.inatel.c125;
 
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -14,12 +18,12 @@ public class Clinica {
 
     static Scanner leitor = new Scanner(System.in);
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
 
         int op = -1;
 
         while (op != 0) {
-            while (op < 0 || op > 5) {
+            while (op < 0 || op > 6) {
                 System.out.println("\n\n**************************************");
                 System.out.println("\tMenu da Clinica:");
                 System.out.println("0 - Sair do sistema");
@@ -28,6 +32,7 @@ public class Clinica {
                 System.out.println("3 - Adicionar animal de cliente");
                 System.out.println("4 - Iniciar cirurgia");
                 System.out.println("5 - Mostrar dados");
+                System.out.println("6 - Gerar lista de clientes e seus pets");
                 System.out.println("**************************************\n");
 
                 op = leitor.nextInt();
@@ -49,10 +54,12 @@ public class Clinica {
                     case 4:
                         Clinica.iniciarCirurgia();
                         break;
-                    
                     case 5:
                         Clinica.showDataBase();
                         break;
+                    case 6:
+                    	Clinica.gerarListaClientes();
+                    	break;
                     default:
                         break;
                 }
@@ -313,5 +320,30 @@ public class Clinica {
             
         });
         
+    }
+    public static void gerarListaClientes() {
+    	//Gerar arquivo txt de clientes e seus pets
+    	
+    	Path arquivo = Paths.get("clientes.txt");
+    	
+    	clientes.forEach(cli -> {
+    		try {
+    			Files.writeString(arquivo,"\n"+cli.getNome(),StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+    			cli.getAnimais().forEach(anim -> {
+    				try {
+						Files.writeString(arquivo, " --> "+anim.getNome()+"\n",StandardOpenOption.CREATE, StandardOpenOption.APPEND);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+                });
+    		} catch (IOException e) {
+    			// TODO Auto-generated catch block
+    			e.printStackTrace();
+    		}    
+    	});
+    	
+
+
     }
 }
