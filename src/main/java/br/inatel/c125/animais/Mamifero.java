@@ -1,6 +1,6 @@
 package br.inatel.c125.animais;
 
-public class Mamifero extends Animal {
+public abstract class Mamifero extends Animal {
     private String corDoPelo;
 
     //Construtor

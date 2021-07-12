@@ -1,6 +1,6 @@
 package br.inatel.c125.animais;
 
-public class Animal {
+public abstract class Animal {
     protected String nome;
     protected int idade;
     protected double peso;

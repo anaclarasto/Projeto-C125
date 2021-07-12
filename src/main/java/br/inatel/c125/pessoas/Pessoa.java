@@ -1,6 +1,6 @@
 package br.inatel.c125.pessoas;
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nome;
     private String telefone;
     private String cpf;
